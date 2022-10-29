@@ -1,5 +1,20 @@
 name: "clickable"
 description: "Build arm64 applications for Ubuntu Touch"
+inputs:
+  image:
+    description: 'Image'
+    required: true
+  workspace:
+    description: 'workspace mount'
+    default: ${{ github.workspace }}:/tmp/clickable_base
+    required: false
+  network:
+    description: 'Docker Network ID'
+    default: ${{ job.container.network }}
+    required: false
+  run:
+    description: 'Run command in container'
+    required: false
 runs:
   using: 'docker'
-  image: 'clickable/ci-16.04-arm64'
+  image: 'Dockerfile'
