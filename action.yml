@@ -1,0 +1,5 @@
+name: "clickable"
+description: "Build arm64 applications for Ubuntu Touch"
+runs:
+  using: 'docker'
+  image: 'clickable/ci-16.04-arm64'
