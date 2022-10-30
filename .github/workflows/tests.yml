@@ -63,14 +63,23 @@ jobs:
           image: clickable/ci-16.04-${{ matrix.arch }}
           run: |
             clickable --help
-  build-type-test:
+  environment-variable-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: run docker and test environment vars
+        env:
+          BUILD_TYPE: --debug
         uses: ./
         with:
           image: clickable/ci-16.04-amd64
-          build: Debug
           run: |
-            echo "build type:$INPUT_BUILD"
+            echo "::set-output name=build-type::`echo $BUILD_TYPE`"
+      - name: Check if file contents match
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const envVar = '${{ steps.run-docker.outputs.build-type }}';
+            if (envVar !== '--debug') {
+              core.setFailed(`failed to pass environment`);
+            }
