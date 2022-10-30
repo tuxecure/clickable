@@ -39,7 +39,7 @@ jobs:
           image: docker
           options: -v ${{ github.workspace }}:/tmp/clickable_base
           run: |
-            echo "::set-output name=file-contents::`cat /work/someFile`"
+            echo "::set-output name=file-contents::`cat /tmp/clickable_base/someFile`"
       - name: Check if file contents match
         uses: actions/github-script@v3
         with:
