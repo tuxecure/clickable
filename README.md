@@ -33,7 +33,6 @@ jobs:
     - name: Publish to Open Store
         if: startsWith( github.ref, 'refs/tags/')
         env:
-          ARCH: ${{ matrix.arch }}
           OPENSTORE_KEY: ${{ secrets.OPENSTORE_KEY }}
         run: clickable publish "* $(git log -1 --pretty=%B | head -1)" --apikey ${OPENSTORE_KEY}
 ```
