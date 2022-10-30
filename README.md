@@ -1,6 +1,6 @@
 # README
 
-A GitHub Action for building packages for ubuntu touch
+A GitHub Action for building packages for Ubuntu Touch based on https://github.com/addnab/docker-run-action
 
 ## Usage
 
@@ -24,11 +24,16 @@ jobs:
       with:
         image: clickable/ci-16.04-${{ matrix.arch }}
         run: |
-              cd /tmp/clickable_base; \
               clickable build
     - name: Upload .click package
           uses: actions/upload-artifact@v3.1.1
           with:
             path: |
               build/*/app/*.click
+    - name: Publish to Open Store
+        if: startsWith( github.ref, 'refs/tags/')
+        env:
+          ARCH: ${{ matrix.arch }}
+          OPENSTORE_KEY: ${{ secrets.OPENSTORE_KEY }}
+        run: clickable publish "* $(git log -1 --pretty=%B | head -1)" --apikey ${OPENSTORE_KEY}
 ```
