@@ -74,6 +74,8 @@ jobs:
         with:
           image: clickable/ci-16.04-amd64
           run: |
+            env
+            echo $BUILD_TYPE
             echo "::set-output name=build-type::`echo $BUILD_TYPE`"
       - name: Check if environment variables were passed through
         uses: actions/github-script@v3
