@@ -47,3 +47,14 @@ jobs:
             if (fileContents !== 'some text') {
               core.setFailed(`Unable to mount workspace volume`);
             }
+  clickable-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run docker and test clickable
+        uses: ./
+        id: run-docker
+        with:
+          image: docker
+          run: |
+            clickable --help
