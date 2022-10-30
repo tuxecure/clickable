@@ -38,8 +38,6 @@ jobs:
         with:
           image: docker
           run: |
-            ls
-            pwd
             echo "::set-output name=file-contents::`cat someFile`"
       - name: Check if file contents match
         uses: actions/github-script@v3
