@@ -71,17 +71,17 @@ jobs:
         env:
           BUILD_TYPE: --debug
         uses: ./
+        id: run-clickable
         with:
           image: clickable/ci-16.04-amd64
           run: |
-            env
             echo $BUILD_TYPE
             echo "::set-output name=build-type::`echo $BUILD_TYPE`"
       - name: Check if environment variables were passed through
         uses: actions/github-script@v3
         with:
           script: |
-            const envVar = '${{ steps.run-docker.outputs.build-type }}';
+            const envVar = '${{ steps.run-clickable.outputs.build-type }}';
             if (envVar !== '--debug') {
               core.setFailed(`failed to pass environment`);
             }
