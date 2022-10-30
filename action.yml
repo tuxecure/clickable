@@ -6,7 +6,7 @@ inputs:
     required: true
   workspace:
     description: 'workspace mount'
-    default: ${{ github.workspace }}:/tmp/clickable_base
+    default: ${{ github.workspace }}
     required: false
   run:
     description: 'Run command in container'
