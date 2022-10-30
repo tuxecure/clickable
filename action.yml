@@ -12,6 +12,9 @@ inputs:
     description: 'Use a specific shell'
     required: false
     default: bash
+  build:
+    description: 'build type: Release or Debug'
+    required: false
   run:
     description: 'Run command in container'
     required: false

@@ -59,3 +59,15 @@ jobs:
           image: clickable/ci-16.04-amd64
           run: |
             clickable --help
+  build-type-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run docker and test environment vars
+        uses: ./
+        with:
+          image: clickable/ci-16.04-amd64
+          build: Debug
+          run: |
+            echo "build type:$INPUT_DEBUG"
+            clickable --help
