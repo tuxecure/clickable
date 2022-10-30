@@ -48,25 +48,3 @@ jobs:
             if (fileContents !== 'some text') {
               core.setFailed(`Unable to mount workspace volume`);
             }
-  container-network-test:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: test
-          POSTGRES_USER: test
-          POSTGRES_DB: test
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run docker action and test network connection
-        uses: ./
-        with:
-          image: postgres
-          run: >
-            pg_isready -d test -U test -h postgres -p ${{ job.services.postgres.ports[5432] }}
-          options: >
-            -e PGPASSWORD=test
