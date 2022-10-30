@@ -20,7 +20,7 @@ jobs:
     - name: Checkout 
       uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
     - name: build package
-      uses: tuxecure/clickable@v0.3
+      uses: tuxecure/clickable@v1
       with:
         image: clickable/ci-16.04-${{ matrix.arch }}
         run: clickable build
