@@ -73,5 +73,4 @@ jobs:
           image: clickable/ci-16.04-amd64
           build: Debug
           run: |
-            echo "build type:$INPUT_DEBUG"
-            clickable --help
+            echo "build type:$INPUT_BUILD"
