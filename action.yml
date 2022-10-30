@@ -8,6 +8,10 @@ inputs:
     description: 'workspace mount'
     default: /tmp/clickable_base/${{ github.event.repository.name }}
     required: false
+  shell:
+    description: 'Use a specific shell'
+    required: false
+    default: bash
   run:
     description: 'Run command in container'
     required: false

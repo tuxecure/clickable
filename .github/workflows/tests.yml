@@ -16,6 +16,7 @@ jobs:
         id: run-docker
         with:
           image: docker:20.10.3
+          shell: sh
           run: |
             echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
       - name: Test the output
@@ -37,6 +38,7 @@ jobs:
         id: run-docker
         with:
           image: docker
+          shell: sh
           run: |
             echo "::set-output name=file-contents::`cat someFile`"
       - name: Check if file contents match
@@ -59,7 +61,6 @@ jobs:
         env:
             ARCH: ${{ matrix.arch }}
         uses: ./
-        id: run-docker
         with:
           image: clickable/ci-16.04-${ARCH}
           run: |
