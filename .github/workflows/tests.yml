@@ -75,7 +75,7 @@ jobs:
           image: clickable/ci-16.04-amd64
           run: |
             echo "::set-output name=build-type::`echo $BUILD_TYPE`"
-      - name: Check if file contents match
+      - name: Check if environment variables were passed through
         uses: actions/github-script@v3
         with:
           script: |
