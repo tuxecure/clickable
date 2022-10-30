@@ -50,13 +50,17 @@ jobs:
               core.setFailed(`Unable to mount workspace volume`);
             }
   clickable-test:
+    strategy:
+      fail-fast: false
+      matrix:
+         arch: [armhf, arm64, amd64]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: run docker and test clickable
         uses: ./
         with:
-          image: clickable/ci-16.04-amd64
+          image: clickable/ci-16.04-${{ matrix.arch }}
           run: |
             clickable --help
   build-type-test:
