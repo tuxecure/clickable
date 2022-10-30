@@ -55,6 +55,6 @@ jobs:
         uses: ./
         id: run-docker
         with:
-          image: docker
+          image: clickable/ci-16.04-${ARCH}
           run: |
             clickable --help
