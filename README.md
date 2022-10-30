@@ -16,7 +16,7 @@ build-armhf:
     - name: Checkout 
       uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
     - name: build package
-      uses: tuxecure/clickable@v0.2
+      uses: tuxecure/clickable@v0.3
       with:
         image: clickable/ci-16.04-armhf
         run: |
@@ -34,7 +34,7 @@ build-arm64:
     - name: Checkout 
       uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
     - name: build package
-      uses: tuxecure/clickable@v0.2
+      uses: tuxecure/clickable@v0.3
       with:
         image: clickable/ci-16.04-arm64
         run: |
