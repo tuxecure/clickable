@@ -8,10 +8,6 @@ inputs:
     description: 'workspace mount'
     default: ${{ github.workspace }}:/tmp/clickable_base
     required: false
-  network:
-    description: 'Docker Network ID'
-    default: ${{ job.container.network }}
-    required: false
   run:
     description: 'Run command in container'
     required: false
