@@ -9,26 +9,32 @@ Customize following example workflow and save as `.github/workflows/clickable.ym
 ## Examples
 
 ```yaml
+name: Clickable Build
+
+on:
+  push:
+
 jobs:
-  ubuntu-touch:
+  build:
     strategy:
-      fail-fast: false
       matrix:
-         arch: [armhf, arm64, amd64]
+        arch: [amd64, arm64, armhf]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 
-      uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
-    - name: build package
-      uses: tuxecure/clickable@v0.3
-      with:
-        image: clickable/ci-16.04-${{ matrix.arch }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+      - name: Install clickable
         run: |
-              cd /tmp/clickable_base; \
-              clickable build
-    - name: Upload .click package
-          uses: actions/upload-artifact@v3.1.1
-          with:
-            path: |
-              build/*/app/*.click
+          python3 -m pip install clickable-ut
+      - name: Build
+        run: |
+          clickable build --arch ${{ matrix.arch }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app.domainname_${{ matrix.arch }}
+          path: build/*/app/*.click
+          if-no-files-found: error
 ```
