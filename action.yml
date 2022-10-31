@@ -6,7 +6,7 @@ inputs:
     required: true
   workspace:
     description: 'workspace mount'
-    default: /tmp/clickable_base/${{ github.event.repository.name }}
+    default: /tmp/clickable/${{ github.event.repository.name }}
     required: false
   shell:
     description: 'Use a specific shell'
