@@ -18,7 +18,7 @@ jobs:
           image: docker:20.10.3
           shell: sh
           run: |
-            echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
+            echo "docker-version=$DOCKER_VERSION"  >> $GITHUB_OUTPUT
       - name: Test the output
         uses: actions/github-script@v6
         with:
