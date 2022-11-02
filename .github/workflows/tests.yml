@@ -10,7 +10,7 @@ jobs:
   smoke-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run docker action and set output for testing
         uses: ./
         id: run-docker
@@ -30,7 +30,7 @@ jobs:
   volume-mount-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Create File to be mounted
         run: echo "some text" > someFile
       - name: Run docker action with mounted workspace
@@ -56,7 +56,7 @@ jobs:
          arch: [armhf, arm64, amd64]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: run docker and test clickable
         uses: ./
         with:
@@ -66,7 +66,7 @@ jobs:
   environment-variable-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: run docker and test environment vars
         env:
           BUILD_TYPE: --debug
