@@ -18,7 +18,9 @@ jobs:
           image: docker:20.10.3
           shell: sh
           run: |
-            echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
+            echo "DOCKER_VERSION="$DOCKER_VERSION
+            echo "docker-version=$DOCKER_VERSION"  >> $GITHUB_OUTPUT
+            echo "docker-version="${{ steps.run-docker.outputs.docker-version }}
       - name: Test the output
         uses: actions/github-script@v6
         with:
@@ -39,8 +41,9 @@ jobs:
         with:
           image: docker
           shell: sh
-          run: |
+          run: |   
             echo "::set-output name=file-contents::`cat someFile`"
+            echo "file-contents:"${{ steps.run-docker.outputs.file-contents }}
       - name: Check if file contents match
         uses: actions/github-script@v6
         with:
