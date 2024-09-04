@@ -22,7 +22,7 @@ jobs:
     - name: build package
       uses: tuxecure/clickable@v1
       with:
-        image: clickable/ci-16.04-${{ matrix.arch }}
+        image: clickable/ci-20.04-${{ matrix.arch }}
         run: clickable build
     - name: Upload .click package
           uses: actions/upload-artifact@v3.1.1
