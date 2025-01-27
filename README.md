@@ -25,9 +25,9 @@ jobs:
         image: clickable/ci-20.04-${{ matrix.arch }}
         run: clickable build
     - name: Upload .click package
-          uses: actions/upload-artifact@v3.1.1
-          with:
-            path: build/*/app/*.click
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        path: build/*/app/*.click
     - name: Publish to Open Store
         if: startsWith( github.ref, 'refs/tags/')
         env:
