@@ -18,14 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 
-      uses: actions/checkout@v2 # Required to mount the Github Workspace to a volume 
+      uses: actions/checkout@v6 # Required to mount the Github Workspace to a volume 
     - name: build package
-      uses: tuxecure/clickable@v1
+      uses: tuxecure/clickable@v2
       with:
         image: clickable/ci-20.04-${{ matrix.arch }}
         run: clickable build
     - name: Upload .click package
-      uses: actions/upload-artifact@v3.1.1
+      uses: actions/upload-artifact@v4
       with:
         path: build/*/app/*.click
     - name: Publish to Open Store
