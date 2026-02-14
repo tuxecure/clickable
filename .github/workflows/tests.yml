@@ -15,7 +15,7 @@ jobs:
         uses: ./
         id: run-docker
         with:
-          image: docker:20.10.3
+          image: docker:29.2.1
           shell: sh
           run: |
             echo "::set-output name=docker-version::`echo $DOCKER_VERSION`"
@@ -24,7 +24,7 @@ jobs:
         with:
           script: |
             const dockerVersion = '${{ steps.run-docker.outputs.docker-version }}';
-            if (dockerVersion !== '20.10.3') {
+            if (dockerVersion !== '29.2.1') {
               core.setFailed(`Smoke Test Failed`);
             }
   volume-mount-test:
@@ -60,7 +60,7 @@ jobs:
       - name: run docker and test clickable
         uses: ./
         with:
-          image: clickable/ci-16.04-${{ matrix.arch }}
+          image: clickable/ci-ut24.04-1.x-${{ matrix.arch }}
           run: |
             clickable --help
   environment-variable-test:
@@ -73,7 +73,7 @@ jobs:
         uses: ./
         id: run-clickable
         with:
-          image: clickable/ci-16.04-amd64
+          image: clickable/ci-ut24.04-1.x-amd64
           run: |
             echo "::set-output name=build-type::`echo $BUILD_TYPE`"
       - name: Check if environment variables were passed through
